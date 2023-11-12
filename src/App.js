@@ -5,6 +5,7 @@ class App {
   async run() {
     OutputView.printWelcomeMessage();
     const date = await InputView.readDate();
+    const orders = await InputView.readOrders();
   }
 }
 
