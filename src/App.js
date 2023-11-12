@@ -1,5 +1,9 @@
+import OutputView from "./views/OutputView.js";
+
 class App {
-  async run() {}
+  async run() {
+    OutputView.printWelcomeMessage();
+  }
 }
 
 export default App;
