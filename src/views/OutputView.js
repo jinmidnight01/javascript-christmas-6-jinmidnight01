@@ -5,6 +5,10 @@ const OutputView = {
     printWelcomeMessage() {
         Console.print(Messages.WELCOME);
     },
+
+    printBenefitsPreviewTitle() {
+        Console.print(Messages.BENEFITS_PREVIEW_TITLE);
+    },
     
     printMenu() {
         Console.print("<주문 메뉴>");

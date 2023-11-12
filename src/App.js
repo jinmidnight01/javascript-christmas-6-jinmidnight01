@@ -8,6 +8,7 @@ class App {
     const date = await InputView.readDate();
     const orders = await InputView.readOrders();
     const eventBenefit = new EventBenefit(date, orders);
+    OutputView.printBenefitsPreviewTitle();
   }
 }
 
