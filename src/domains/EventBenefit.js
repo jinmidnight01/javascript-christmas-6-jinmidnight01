@@ -1,4 +1,5 @@
 import Conditions from "../constants/Conditions.js";
+import Validations from "./Validations.js";
 
 class EventBenefit {
   /** @type {number} */
@@ -20,6 +21,10 @@ class EventBenefit {
       result[name] = Number(count);
     });
     return result;
+  }
+
+  static validateDate(date) {
+    Validations.isValidDate(date);
   }
 
 }
