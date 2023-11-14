@@ -9,6 +9,10 @@ const OutputView = {
     printBenefitsPreviewTitle() {
         Console.print(Messages.BENEFITS_PREVIEW_TITLE);
     },
+
+    printErrorMessage(errorMessage) {
+        Console.print(errorMessage);
+    },
     
     printMenu() {
         Console.print("<주문 메뉴>");

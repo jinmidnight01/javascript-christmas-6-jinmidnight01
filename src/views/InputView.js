@@ -3,13 +3,11 @@ import Messages from '../constants/Messages.js';
 
 const InputView = {
     async readDate() {
-        const input = await Console.readLineAsync(`${Messages.ASK_DATE}\n`);
-        return input;
+        return Console.readLineAsync(`${Messages.ASK_DATE}\n`);
     },
 
     async readOrders() {
-        const input = await Console.readLineAsync(`${Messages.ASK_ORDERS}\n`);
-        return input;
+        return Console.readLineAsync(`${Messages.ASK_ORDERS}\n`);
     }
 }
 
