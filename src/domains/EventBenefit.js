@@ -40,6 +40,10 @@ class EventBenefit {
     Validations.hasNotDrinkOnly(orders);
     Validations.isTotalAmountBelowMaximum(orders);
   }
+
+  getTotalAmount() {
+    return Object.values(this.#orders).reduce((acc, cur) => acc + cur);
+  }
 }
 
 export default EventBenefit;
