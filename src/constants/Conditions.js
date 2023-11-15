@@ -25,7 +25,7 @@ const Conditions = Object.freeze({
       '샴페인': 25000
     }
   }),
-  MENU_FORMAT: /^(.+)-(\d+)$/,
+  MENU_FORMAT: /^([ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)-(\d+)$/,
   MIN_ORDER_AMOUNT: 1,
 });
 
