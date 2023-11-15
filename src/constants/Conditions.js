@@ -36,6 +36,11 @@ const Conditions = Object.freeze({
   }),
   STARS_DATE: Object.freeze(['Sunday', 25]),
   SPECIAL_DISCOUNT_AMOUNT: 1000,
+  BADGE: Object.freeze({
+    '산타': 20000,
+    '트리': 10000,
+    '별': 5000,
+  }),
 });
 
 export default Conditions;

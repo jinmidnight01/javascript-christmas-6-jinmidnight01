@@ -108,6 +108,32 @@ class EventBenefit {
     }
     return 0;
   }
+
+  getTotalDiscountPrice() {
+    return (
+      this.getDdayDiscountPrice() +
+      this.getDayOfWeekDiscountPrice() +
+      this.getSpecialDiscountPrice() +
+      this.getChampagneDiscountPrice()
+    );
+  }
+
+  getFinalPrice() {
+    return this.getTotalPrice() - this.getTotalDiscountPrice();
+  }
+
+  getBadge() {
+    if (this.getTotalDiscountPrice() >= Conditions.BADGE.산타) {
+      return '산타';
+    }
+    if (this.getTotalDiscountPrice() >= Conditions.BADGE.트리) {
+      return '트리';
+    }
+    if (this.getTotalDiscountPrice() >= Conditions.BADGE.별) {
+      return '별';
+    }
+    return '';
+  }
 }
 
 export default EventBenefit;
