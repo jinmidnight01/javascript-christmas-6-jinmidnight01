@@ -41,8 +41,11 @@ class EventBenefit {
     Validations.isTotalAmountBelowMaximum(orders);
   }
 
-  getTotalAmount() {
-    return Object.values(this.#orders).reduce((acc, cur) => acc + cur);
+  getTotalPrice() {
+    return Object.entries(this.#orders).reduce(
+      (total, [name, count]) => total + Conditions.MENU[name].price * count,
+      0,
+    );
   }
 }
 

@@ -55,9 +55,7 @@ class Validations {
    */
   static isOrderInMenu(orders) {
     const ordersMenuNames = Object.keys(orders);
-    const menuNames = Object.values(Conditions.MENU).flatMap(category =>
-      Object.keys(category),
-    );
+    const menuNames = Object.keys(Conditions.MENU);
     if (ordersMenuNames.some(name => !menuNames.includes(name))) {
       throw new Error(Errors.INVALID_ORDERS);
     }
@@ -85,7 +83,9 @@ class Validations {
    */
   static hasNotDrinkOnly(orders) {
     const ordersMenuNames = Object.keys(orders);
-    const drinkMenuNames = Object.keys(Conditions.MENU.DRINK);
+    const drinkMenuNames = Object.keys(Conditions.MENU).filter(
+      name => Conditions.MENU[name].category === 'drink',
+    );
     if (ordersMenuNames.every(name => drinkMenuNames.includes(name))) {
       throw new Error(Errors.INVALID_ORDERS);
     }
