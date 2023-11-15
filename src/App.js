@@ -26,6 +26,7 @@ class App {
   printOutput(eventBenefit) {
     OutputView.printBenefitsPreviewTitle();
     OutputView.printMenu(eventBenefit.getOrders());
+    OutputView.printTotalPrice(eventBenefit.getTotalPrice());
   }
 
   async recursiveInput(fn, context) {

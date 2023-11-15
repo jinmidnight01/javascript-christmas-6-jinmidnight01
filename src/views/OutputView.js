@@ -21,6 +21,11 @@ const OutputView = {
     });
   },
 
+  printTotalPrice(totalPrice) {
+    Console.print(`\n${Messages.TITLE.TOTAL_PRICE}`);
+    Console.print(`${totalPrice.toLocaleString()}원`);
+  }
+
 };
 
 export default OutputView;
