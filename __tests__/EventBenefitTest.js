@@ -13,4 +13,17 @@ describe("이벤트 적용 및 혜택", () => {
     const received = eventBenefit.getTotalPrice();
     expect(received).toEqual(expected);
   });
+
+  test.each([
+    ["1", "타파스-1,제로콜라-1", false], 
+    ["1", "티본스테이크-1,제로콜라-1", true], 
+    ["1", "시저샐러드-1,티본스테이크-1", true], 
+    ["1", "바비큐립-1,해산물파스타-1,티본스테이크-1", true], 
+    ["1", "양송이수프-1,제로콜라-1", false],
+  ])("이벤트 적용 여부 연산 결과 비교", async (dateString, orderString, expected) => {
+    const eventBenefit = new EventBenefit(dateString, orderString);
+    const received = eventBenefit.canEventApply();
+    expect(received).toEqual(expected);
+  });
+
 });
