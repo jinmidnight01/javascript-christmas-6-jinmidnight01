@@ -100,6 +100,14 @@ class EventBenefit {
     }
     return 0;
   }
+
+  getChampagneDiscountPrice() {
+    const name = '샴페인'
+    if (this.canChampagneApply()) {
+      return Conditions.MENU[name].price;
+    }
+    return 0;
+  }
 }
 
 export default EventBenefit;
