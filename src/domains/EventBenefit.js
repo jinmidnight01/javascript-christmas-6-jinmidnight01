@@ -57,16 +57,21 @@ class EventBenefit {
   }
 
   getDdayDiscountPrice() {
-    if (this.#date <= Conditions.DDAY_END_DATE) {
-      return (
-        Conditions.DDAY_DISCOUNT_INITIAL_PRICE +
-        Conditions.DDAY_DISCOUNT_AMOUNT * (this.#date - 1)
-      );
+    if (this.canEventApply()) {
+      if (this.#date <= Conditions.DDAY_END_DATE) {
+        return (
+          Conditions.DDAY_DISCOUNT_INITIAL_PRICE +
+          Conditions.DDAY_DISCOUNT_AMOUNT * (this.#date - 1)
+        );
+      }
     }
     return 0;
   }
 
   getDayOfWeekDiscountPrice() {
+    if (!this.canEventApply()) {
+      return 0;
+    }
     const dayName = this.#getDayOfweek();
     return this.#calculateDayOfWeekDiscountPrice(dayName);
   }
@@ -94,17 +99,21 @@ class EventBenefit {
   }
 
   getSpecialDiscountPrice() {
-    const dayOfWeek = this.#getDayOfweek();
-    if (Conditions.STARS_DATE.includes(dayOfWeek) || Conditions.STARS_DATE.includes(this.#date)) {
-      return Conditions.SPECIAL_DISCOUNT_AMOUNT;
+    if (this.canEventApply()) {
+      const dayOfWeek = this.#getDayOfweek();
+      if (Conditions.STARS_DATE.includes(dayOfWeek) || Conditions.STARS_DATE.includes(this.#date)) {
+        return Conditions.SPECIAL_DISCOUNT_AMOUNT;
+      }
     }
     return 0;
   }
 
   getChampagneDiscountPrice() {
-    const name = '샴페인'
-    if (this.canChampagneApply()) {
-      return Conditions.MENU[name].price;
+    if (this.canEventApply()) {
+      const name = '샴페인'
+      if (this.canChampagneApply()) {
+        return Conditions.MENU[name].price;
+      }
     }
     return 0;
   }
@@ -132,7 +141,7 @@ class EventBenefit {
     if (this.getTotalDiscountPrice() >= Conditions.BADGE.별) {
       return '별';
     }
-    return '';
+    return NaN;
   }
 }
 
