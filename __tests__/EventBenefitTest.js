@@ -73,4 +73,16 @@ describe("이벤트 적용 및 혜택", () => {
     const received = eventBenefit.getSpecialDiscountPrice();
     expect(received).toEqual(expected);
   });
+
+  test.each([
+    ["1", "타파스-100,제로콜라-10", 25000], 
+    ["1", "티본스테이크-1,제로콜라-1", 0], 
+    ["1", "양송이수프-1,티본스테이크-1", 0], 
+    ["1", "바비큐립-1,해산물파스타-1,티본스테이크-1", 25000], 
+    ["1", "크리스마스파스타-4,아이스크림-4", 25000],
+  ])("증정 이벤트 혜택 금액 연산 결과 비교", async (dateString, orderString, expected) => {
+    const eventBenefit = new EventBenefit(dateString, orderString);
+    const received = eventBenefit.getChampagneDiscountPrice();
+    expect(received).toEqual(expected);
+  });
 });
