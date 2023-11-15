@@ -52,6 +52,9 @@ class EventBenefit {
     return this.getTotalPrice() >= Conditions.EVENT_MINIMUM_PRICE;
   }
 
+  canChampagneApply() {
+    return this.getTotalPrice() >= Conditions.CHAMPAGNE_MINIMUM_PRICE;
+  }
 }
 
 export default EventBenefit;

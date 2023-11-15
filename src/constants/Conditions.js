@@ -21,6 +21,7 @@ const Conditions = Object.freeze({
   MIN_ORDER_AMOUNT: 1,
   MAX_ORDER_AMOUNT: 20,
   EVENT_MINIMUM_PRICE: 10000,
+  CHAMPAGNE_MINIMUM_PRICE: 120000,
 });
 
 export default Conditions;
