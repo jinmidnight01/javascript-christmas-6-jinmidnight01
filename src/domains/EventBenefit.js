@@ -10,10 +10,14 @@ class EventBenefit {
 
   constructor(dateString, orderString) {
     this.#date = Number(dateString);
-    this.#orders = this.#parseOrders(orderString);
+    this.#orders = this.parseOrders(orderString);
   }
 
-  #parseOrders(orderString) {
+  /**
+   * @param {string} orderString 
+   * @returns {Array}
+   */
+  static parseOrders(orderString) {
     const pairs = orderString.split(Conditions.ORDER_DELIMITER);
     const result = {};
     pairs.forEach(pair => {
@@ -24,11 +28,13 @@ class EventBenefit {
   }
 
   static validateDate(date) {
-    Validations.isValidDate(date);
+    Validations.isInRange(date);
   }
 
   static validateOrders(orderString) {
     Validations.isValidMenuFormat(orderString);
+    const orders = this.parseOrders(orderString);
+    Validations.hasMenuName(orders);
   }
 }
 
