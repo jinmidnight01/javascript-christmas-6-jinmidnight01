@@ -48,4 +48,12 @@ describe("주문 목록", () => {
     expect(() => EventBenefit.validateOrders(orderString)).toThrow("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
   });
 
+  test.each([
+    ["시저샐러드-6,티본스테이크-5,크리스마스파스타-10"],
+    ["시저샐러드-3,티본스테이크-4,크리스마스파스타-9,제로콜라-7"], 
+    ["시저샐러드-2,티본스테이크-5,크리스마스파스타-8,제로콜라-5,아이스크림-5"], 
+  ])("총 메뉴 개수가 20개를 초과하는 경우", (orderString) => {
+    expect(() => EventBenefit.validateOrders(orderString)).toThrow("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+  });
+
 });
