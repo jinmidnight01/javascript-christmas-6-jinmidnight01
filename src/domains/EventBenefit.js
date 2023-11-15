@@ -64,8 +64,8 @@ class EventBenefit {
     if (this.canEventApply()) {
       if (this.#date <= Conditions.DDAY_END_DATE) {
         return (
-          Conditions.DDAY_DISCOUNT_INITIAL_PRICE +
-          Conditions.DDAY_DISCOUNT_AMOUNT * (this.#date - 1)
+          Conditions.MINUS * (Conditions.DDAY_DISCOUNT_INITIAL_PRICE +
+          Conditions.DDAY_DISCOUNT_AMOUNT * (this.#date - 1))
         );
       }
     }
@@ -76,11 +76,11 @@ class EventBenefit {
     if (!this.canEventApply()) {
       return 0;
     }
-    const dayName = this.#getDayOfweek();
+    const dayName = this.getDayOfWeek();
     return this.#calculateDayOfWeekDiscountPrice(dayName);
   }
 
-  #getDayOfweek() {
+  getDayOfWeek() {
     const date = new Date(`${Conditions.EVENT_YEAR_MONTH}${this.#date}`);
     const dayOfWeek = date.getDay();
     return Conditions.DAYS_OF_WEEK[dayOfWeek];
@@ -96,7 +96,7 @@ class EventBenefit {
     }
     return Object.entries(this.#orders).reduce((total, [name, count]) => {
       if (Conditions.MENU[name].category === category) {
-        return total + Conditions.DAYS_OF_WEEK_DISCOUNT_AMOUNT * count;
+        return total - Conditions.DAYS_OF_WEEK_DISCOUNT_AMOUNT * count;
       }
       return total;
     }, 0);
@@ -104,9 +104,9 @@ class EventBenefit {
 
   getSpecialDiscountPrice() {
     if (this.canEventApply()) {
-      const dayOfWeek = this.#getDayOfweek();
+      const dayOfWeek = this.getDayOfWeek();
       if (Conditions.STARS_DATE.includes(dayOfWeek) || Conditions.STARS_DATE.includes(this.#date)) {
-        return Conditions.SPECIAL_DISCOUNT_AMOUNT;
+        return Conditions.MINUS * Conditions.SPECIAL_DISCOUNT_AMOUNT;
       }
     }
     return 0;
@@ -116,7 +116,7 @@ class EventBenefit {
     if (this.canEventApply()) {
       const name = Conditions.CHAMPAGNE;
       if (this.canChampagneApply()) {
-        return Conditions.MENU[name].price;
+        return Conditions.MINUS * Conditions.MENU[name].price;
       }
     }
     return 0;
@@ -132,7 +132,7 @@ class EventBenefit {
   }
 
   getFinalPrice() {
-    return this.getTotalPrice() - this.getTotalDiscountPrice() + this.getChampagneDiscountPrice();
+    return this.getTotalPrice() + this.getTotalDiscountPrice() - this.getChampagneDiscountPrice();
   }
 
   getBadge() {
@@ -145,7 +145,7 @@ class EventBenefit {
     if (this.getTotalDiscountPrice() >= Conditions.BADGE.별) {
       return Conditions.STAR;
     }
-    return NaN;
+    return null;
   }
 }
 
