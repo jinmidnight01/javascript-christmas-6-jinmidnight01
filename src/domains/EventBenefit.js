@@ -8,13 +8,13 @@ class EventBenefit {
   /** @type {object} */
   #orders;
 
-  constructor(date, orders) {
-    this.#date = Number(date);
-    this.#orders = this.#parseOrders(orders);
+  constructor(dateString, orderString) {
+    this.#date = Number(dateString);
+    this.#orders = this.#parseOrders(orderString);
   }
 
-  #parseOrders(orders) {
-    const pairs = orders.split(Conditions.ORDER_DELIMITER);
+  #parseOrders(orderString) {
+    const pairs = orderString.split(Conditions.ORDER_DELIMITER);
     const result = {};
     pairs.forEach(pair => {
       const [name, count] = pair.split(Conditions.NAME_COUNT_DELIMITER);
@@ -27,6 +27,9 @@ class EventBenefit {
     Validations.isValidDate(date);
   }
 
+  static validateOrders(orderString) {
+    Validations.isValidMenuFormat(orderString);
+  }
 }
 
 export default EventBenefit;

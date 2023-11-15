@@ -5,14 +5,14 @@ import EventBenefit from "./domains/EventBenefit.js";
 class App {
   async run() {
     OutputView.printWelcomeMessage();
-    const date = await this.recursiveInput(this.readDate, this)
+    const dateString = await this.recursiveInput(this.readDate, this)
     OutputView.printBenefitsPreviewTitle();
   }
 
   async readDate() {
-    const date = await InputView.readDate();
-    EventBenefit.validateDate(date);
-    return date;
+    const dateString = await InputView.readDate();
+    EventBenefit.validateDate(dateString);
+    return dateString;
   }
 
   async recursiveInput(fn, context) {
