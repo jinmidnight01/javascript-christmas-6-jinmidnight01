@@ -40,4 +40,12 @@ describe("주문 목록", () => {
     expect(() => EventBenefit.validateOrders(orderString)).toThrow("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
   });
 
+  test.each([
+    ["레드와인-1,제로콜라-1"],
+    ["레드와인-2,제로콜라-3,샴페인-5"], 
+    ["샴페인-2,레드와인-2"], 
+  ])("메뉴에 음료 주문만 있을 경우", (orderString) => {
+    expect(() => EventBenefit.validateOrders(orderString)).toThrow("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+  });
+
 });
