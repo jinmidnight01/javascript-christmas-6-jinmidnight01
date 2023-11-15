@@ -26,6 +26,7 @@ const Conditions = Object.freeze({
     }
   }),
   MENU_FORMAT: /^(.+)-(\d+)$/,
+  MIN_ORDER_AMOUNT: 1,
 });
 
 export default Conditions;

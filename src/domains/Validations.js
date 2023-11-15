@@ -34,17 +34,28 @@ class Validations {
     });
   }
 
-    /**
+  /**
    * 주문 목록: 메뉴판에 없는 메뉴 이름을 입력하는 경우
    * @param {Array} orders
    */
-    static hasMenuName(orders) {
-      const ordersMenuNames = Object.keys(orders);
-      const menuNames = Object.values(Conditions.MENU).flatMap(category => Object.keys(category));
-      if (ordersMenuNames.some(name => !menuNames.includes(name))) {
-        throw new Error(Errors.INVALID_ORDERS);
-      }
+  static hasMenuName(orders) {
+    const ordersMenuNames = Object.keys(orders);
+    const menuNames = Object.values(Conditions.MENU).flatMap(category => Object.keys(category));
+    if (ordersMenuNames.some(name => !menuNames.includes(name))) {
+      throw new Error(Errors.INVALID_ORDERS);
     }
+  }
+
+  /**
+   * 주문 목록: 메뉴 개수가 1이상의 자연수가 아닌 경우
+   * @param {Array} orders
+   */
+  static isOrderAmountPlus(orders) {
+    const ordersAmount = Object.values(orders);
+    if (ordersAmount.some(amount => amount < Conditions.MIN_ORDER_AMOUNT || !Number.isInteger(amount))) {
+      throw new Error(Errors.INVALID_ORDERS);
+    }
+  }
 }
 
-export default Validations;
+export default Validations;;
