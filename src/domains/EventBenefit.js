@@ -67,10 +67,14 @@ class EventBenefit {
   }
 
   getDayOfWeekDiscountPrice() {
+    const dayName = this.#getDayOfweek();
+    return this.#calculateDayOfWeekDiscountPrice(dayName);
+  }
+
+  #getDayOfweek() {
     const date = new Date(`${Conditions.EVENT_YEAR_MONTH}${this.#date}`);
     const dayOfWeek = date.getDay();
-    const dayName = Conditions.DAYS_OF_WEEK[dayOfWeek];
-    return this.#calculateDayOfWeekDiscountPrice(dayName);
+    return Conditions.DAYS_OF_WEEK[dayOfWeek];
   }
 
   #calculateDayOfWeekDiscountPrice(dayName) {
@@ -89,6 +93,13 @@ class EventBenefit {
     }, 0);
   }
 
+  getSpecialDiscountPrice() {
+    const dayOfWeek = this.#getDayOfweek();
+    if (Conditions.STARS_DATE.includes(dayOfWeek) || Conditions.STARS_DATE.includes(this.#date)) {
+      return Conditions.SPECIAL_DISCOUNT_AMOUNT;
+    }
+    return 0;
+  }
 }
 
 export default EventBenefit;

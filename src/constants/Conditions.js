@@ -34,6 +34,8 @@ const Conditions = Object.freeze({
     weekday: 'dessert',
     weekend: 'main',
   }),
+  STARS_DATE: Object.freeze(['Sunday', 25]),
+  SPECIAL_DISCOUNT_AMOUNT: 1000,
 });
 
 export default Conditions;
