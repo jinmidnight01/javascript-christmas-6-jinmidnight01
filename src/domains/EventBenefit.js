@@ -128,7 +128,7 @@ class EventBenefit {
   }
 
   getFinalPrice() {
-    return this.getTotalPrice() - this.getTotalDiscountPrice();
+    return this.getTotalPrice() - this.getTotalDiscountPrice() + this.getChampagneDiscountPrice();
   }
 
   getBadge() {

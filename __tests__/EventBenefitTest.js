@@ -94,4 +94,13 @@ describe("이벤트 적용 및 혜택", () => {
     const received = eventBenefit.getTotalDiscountPrice();
     expect(received).toEqual(expected);
   });
+
+  test.each([
+    ["26", "타파스-1,제로콜라-1", 8500], 
+    ["3", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", 135754], 
+  ])("할인 후 예상 결제 금액 연산 결과 비교", async (dateString, orderString, expected) => {
+    const eventBenefit = new EventBenefit(dateString, orderString);
+    const received = eventBenefit.getFinalPrice();
+    expect(received).toEqual(expected);
+  });
 });
