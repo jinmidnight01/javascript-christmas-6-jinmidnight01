@@ -33,10 +33,11 @@ class EventBenefit {
 
   static validateOrders(orderString) {
     Validations.isValidMenuFormat(orderString);
-    Validations.hasSameOrder(orderString);
+    Validations.hasDifferentOrder(orderString);
     const orders = this.parseOrders(orderString);
     Validations.isOrderInMenu(orders);
     Validations.isOrderAmountPlus(orders);
+    Validations.hasNotDrinkOnly(orders);
   }
 }
 

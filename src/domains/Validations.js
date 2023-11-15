@@ -38,9 +38,11 @@ class Validations {
    * 주문 목록: 중복 메뉴를 입력한 경우
    * @param {string} orderString
    */
-  static hasSameOrder(orderString) {
+  static hasDifferentOrder(orderString) {
     const pairs = orderString.split(Conditions.ORDER_DELIMITER);
-    const menuNames = pairs.map(pair => pair.split(Conditions.NAME_COUNT_DELIMITER)[0]);
+    const menuNames = pairs.map(
+      pair => pair.split(Conditions.NAME_COUNT_DELIMITER)[0],
+    );
     const uniqueMenuNames = [...new Set(menuNames)];
     if (menuNames.length !== uniqueMenuNames.length) {
       throw new Error(Errors.INVALID_ORDERS);
@@ -73,6 +75,18 @@ class Validations {
           amount < Conditions.MIN_ORDER_AMOUNT || !Number.isInteger(amount),
       )
     ) {
+      throw new Error(Errors.INVALID_ORDERS);
+    }
+  }
+
+  /**
+   * 주문 목록: 메뉴에 음료 주문만 있을 경우
+   * @param {Array} orders
+   */
+  static hasNotDrinkOnly(orders) {
+    const ordersMenuNames = Object.keys(orders);
+    const drinkMenuNames = Object.keys(Conditions.MENU.DRINK);
+    if (ordersMenuNames.every(name => drinkMenuNames.includes(name))) {
       throw new Error(Errors.INVALID_ORDERS);
     }
   }
