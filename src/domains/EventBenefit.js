@@ -55,6 +55,14 @@ class EventBenefit {
   canChampagneApply() {
     return this.getTotalPrice() >= Conditions.CHAMPAGNE_MINIMUM_PRICE;
   }
+
+  getDdayDiscountPrice() {
+    if (this.#date <= Conditions.DDAY_END_DATE) {
+      return Conditions.DDAY_DISCOUNT_INITIAL_PRICE + 
+        Conditions.DDAY_DISCOUNT_AMOUNT * (this.#date - 1);
+    }
+    return 0;
+  }
 }
 
 export default EventBenefit;
