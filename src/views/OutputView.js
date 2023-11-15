@@ -2,21 +2,25 @@ import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
 
 const OutputView = {
-    printWelcomeMessage() {
-        Console.print(Messages.WELCOME);
-    },
+  printWelcomeMessage() {
+    Console.print(Messages.WELCOME);
+  },
 
-    printBenefitsPreviewTitle() {
-        Console.print(Messages.BENEFITS_PREVIEW_TITLE);
-    },
+  printErrorMessage(errorMessage) {
+    Console.print(errorMessage);
+  },
 
-    printErrorMessage(errorMessage) {
-        Console.print(errorMessage);
-    },
-    
-    printMenu() {
-        Console.print("<주문 메뉴>");
-    }
-}
+  printBenefitsPreviewTitle() {
+    Console.print(Messages.BENEFITS_PREVIEW_TITLE);
+  },
+
+  printMenu(orders) {
+    Console.print(`\n${Messages.TITLE.ORDER_MENU}`);
+    Object.entries(orders).forEach(([name, count]) => {
+      Console.print(`${name} ${count}개`);
+    });
+  },
+
+};
 
 export default OutputView;
