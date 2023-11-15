@@ -38,6 +38,7 @@ class EventBenefit {
     Validations.isOrderInMenu(orders);
     Validations.isOrderAmountPlus(orders);
     Validations.hasNotDrinkOnly(orders);
+    Validations.isTotalAmountBelowMaximum(orders);
   }
 }
 

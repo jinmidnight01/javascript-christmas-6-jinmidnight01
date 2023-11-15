@@ -90,6 +90,18 @@ class Validations {
       throw new Error(Errors.INVALID_ORDERS);
     }
   }
+
+  /**
+   * 주문 목록: 총 메뉴 개수가 20개를 초과하는 경우
+   * @param {Array} orders
+   */
+  static isTotalAmountBelowMaximum(orders) {
+    const ordersAmount = Object.values(orders);
+    const totalAmount = ordersAmount.reduce((acc, cur) => acc + cur);
+    if (totalAmount > Conditions.MAX_ORDER_AMOUNT) {
+      throw new Error(Errors.INVALID_ORDERS);
+    }
+  }
 }
 
 export default Validations;

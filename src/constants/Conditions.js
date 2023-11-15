@@ -27,6 +27,7 @@ const Conditions = Object.freeze({
   }),
   MENU_FORMAT: /^([ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)-(\d+)$/,
   MIN_ORDER_AMOUNT: 1,
+  MAX_ORDER_AMOUNT: 20,
 });
 
 export default Conditions;
