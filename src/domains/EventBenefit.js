@@ -33,8 +33,9 @@ class EventBenefit {
 
   static validateOrders(orderString) {
     Validations.isValidMenuFormat(orderString);
+    Validations.hasSameOrder(orderString);
     const orders = this.parseOrders(orderString);
-    Validations.hasMenuName(orders);
+    Validations.isOrderInMenu(orders);
     Validations.isOrderAmountPlus(orders);
   }
 }

@@ -1,5 +1,5 @@
-import Errors from "../constants/Errors.js";
-import Conditions from "../constants/Conditions.js";
+import Errors from '../constants/Errors.js';
+import Conditions from '../constants/Conditions.js';
 
 class Validations {
   /**
@@ -9,10 +9,10 @@ class Validations {
   static isInRange(dateString) {
     const dateNumber = Number(dateString);
     if (Number.isNaN(dateNumber) || !Number.isInteger(dateNumber)) {
-      throw new Error(Errors.INVALID_DATE)
+      throw new Error(Errors.INVALID_DATE);
     }
     if (dateNumber < Conditions.MIN_DATE || dateNumber > Conditions.MAX_DATE) {
-      throw new Error(Errors.INVALID_DATE)
+      throw new Error(Errors.INVALID_DATE);
     }
   }
 
@@ -35,12 +35,27 @@ class Validations {
   }
 
   /**
+   * 주문 목록: 중복 메뉴를 입력한 경우
+   * @param {string} orderString
+   */
+  static hasSameOrder(orderString) {
+    const pairs = orderString.split(Conditions.ORDER_DELIMITER);
+    const menuNames = pairs.map(pair => pair.split(Conditions.NAME_COUNT_DELIMITER)[0]);
+    const uniqueMenuNames = [...new Set(menuNames)];
+    if (menuNames.length !== uniqueMenuNames.length) {
+      throw new Error(Errors.INVALID_ORDERS);
+    }
+  }
+
+  /**
    * 주문 목록: 메뉴판에 없는 메뉴 이름을 입력하는 경우
    * @param {Array} orders
    */
-  static hasMenuName(orders) {
+  static isOrderInMenu(orders) {
     const ordersMenuNames = Object.keys(orders);
-    const menuNames = Object.values(Conditions.MENU).flatMap(category => Object.keys(category));
+    const menuNames = Object.values(Conditions.MENU).flatMap(category =>
+      Object.keys(category),
+    );
     if (ordersMenuNames.some(name => !menuNames.includes(name))) {
       throw new Error(Errors.INVALID_ORDERS);
     }
@@ -52,10 +67,15 @@ class Validations {
    */
   static isOrderAmountPlus(orders) {
     const ordersAmount = Object.values(orders);
-    if (ordersAmount.some(amount => amount < Conditions.MIN_ORDER_AMOUNT || !Number.isInteger(amount))) {
+    if (
+      ordersAmount.some(
+        amount =>
+          amount < Conditions.MIN_ORDER_AMOUNT || !Number.isInteger(amount),
+      )
+    ) {
       throw new Error(Errors.INVALID_ORDERS);
     }
   }
 }
 
-export default Validations;;
+export default Validations;
