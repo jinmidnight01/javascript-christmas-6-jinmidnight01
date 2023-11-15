@@ -25,6 +25,15 @@ const Conditions = Object.freeze({
   DDAY_DISCOUNT_AMOUNT: 100,
   DDAY_DISCOUNT_INITIAL_PRICE: 1000,
   DDAY_END_DATE: 25,
+  EVENT_YEAR_MONTH: "2023-12-",
+  DAYS_OF_WEEK: Object.freeze(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']),
+  WEEKDAY_EVENT: Object.freeze(['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday']),
+  WEEKEND_EVENT: Object.freeze(['Friday', 'Saturday']),
+  DAYS_OF_WEEK_DISCOUNT_AMOUNT: 2023,
+  DAYS_OF_WEEKE_EVENT_CATEGORY: Object.freeze({
+    weekday: 'dessert',
+    weekend: 'main',
+  }),
 });
 
 export default Conditions;
