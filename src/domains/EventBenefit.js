@@ -47,6 +47,11 @@ class EventBenefit {
       0,
     );
   }
+
+  canEventApply() {
+    return this.getTotalPrice() >= Conditions.EVENT_MINIMUM_PRICE;
+  }
+
 }
 
 export default EventBenefit;
