@@ -1,5 +1,6 @@
 import { Console } from '@woowacourse/mission-utils';
 import Messages from '../constants/Messages.js';
+import Conditions from '../constants/Conditions.js';
 
 const OutputView = {
   printWelcomeMessage() {
@@ -24,8 +25,16 @@ const OutputView = {
   printTotalPrice(totalPrice) {
     Console.print(`\n${Messages.TITLE.TOTAL_PRICE}`);
     Console.print(`${totalPrice.toLocaleString()}원`);
-  }
+  },
 
+  printPresentMenu(canChampagneApply) {
+    Console.print(`\n${Messages.TITLE.PRESENT_MENU}`);
+    if (canChampagneApply) {
+        Console.print(`${Conditions.CHAMPAGNE} ${Messages.ONE_UNIT}`);
+    } else {
+        Console.print(Messages.NOTHING);
+    }
+  },
 };
 
 export default OutputView;
