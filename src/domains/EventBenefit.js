@@ -70,10 +70,10 @@ class EventBenefit {
     const date = new Date(`${Conditions.EVENT_YEAR_MONTH}${this.#date}`);
     const dayOfWeek = date.getDay();
     const dayName = Conditions.DAYS_OF_WEEK[dayOfWeek];
-    return this.calculateDayOfWeekDiscountPrice(dayName);
+    return this.#calculateDayOfWeekDiscountPrice(dayName);
   }
 
-  calculateDayOfWeekDiscountPrice(dayName) {
+  #calculateDayOfWeekDiscountPrice(dayName) {
     let category;
     if (Conditions.WEEKDAY_EVENT.includes(dayName)) {
       category = Conditions.DAYS_OF_WEEKE_EVENT_CATEGORY.weekday;
@@ -81,7 +81,7 @@ class EventBenefit {
     if (Conditions.WEEKEND_EVENT.includes(dayName)) {
       category = Conditions.DAYS_OF_WEEKE_EVENT_CATEGORY.weekend;
     }
-    return this.#orders.reduce((total, [name, count]) => {
+    return Object.entries(this.#orders).reduce((total, [name, count]) => {
       if (Conditions.MENU[name].category === category) {
         return total + Conditions.DAYS_OF_WEEK_DISCOUNT_AMOUNT * count;
       }
