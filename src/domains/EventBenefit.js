@@ -110,7 +110,7 @@ class EventBenefit {
 
   getChampagneDiscountPrice() {
     if (this.canEventApply()) {
-      const name = '샴페인'
+      const name = Conditions.CHAMPAGNE;
       if (this.canChampagneApply()) {
         return Conditions.MENU[name].price;
       }
@@ -133,13 +133,13 @@ class EventBenefit {
 
   getBadge() {
     if (this.getTotalDiscountPrice() >= Conditions.BADGE.산타) {
-      return '산타';
+      return Conditions.SANTA;
     }
     if (this.getTotalDiscountPrice() >= Conditions.BADGE.트리) {
-      return '트리';
+      return Conditions.TREE;
     }
     if (this.getTotalDiscountPrice() >= Conditions.BADGE.별) {
-      return '별';
+      return Conditions.STAR;
     }
     return NaN;
   }

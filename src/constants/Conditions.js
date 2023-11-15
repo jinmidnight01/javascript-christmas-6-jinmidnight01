@@ -41,6 +41,10 @@ const Conditions = Object.freeze({
     '트리': 10000,
     '별': 5000,
   }),
+  CHAMPAGNE: '샴페인',
+  SANTA: '산타',
+  TREE: '트리',
+  STAR: '별',
 });
 
 export default Conditions;
