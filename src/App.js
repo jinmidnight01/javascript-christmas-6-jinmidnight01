@@ -6,6 +6,8 @@ class App {
   async run() {
     OutputView.printWelcomeMessage();
     const dateString = await this.recursiveInput(this.readDate, this)
+    const orderString = await this.recursiveInput(this.readOrders, this)
+    const eventBenefit = new EventBenefit(dateString, orderString);
     OutputView.printBenefitsPreviewTitle();
   }
 
@@ -13,6 +15,12 @@ class App {
     const dateString = await InputView.readDate();
     EventBenefit.validateDate(dateString);
     return dateString;
+  }
+
+  async readOrders() {
+    const orderString = await InputView.readOrders();
+    EventBenefit.validateOrders(orderString);
+    return orderString;
   }
 
   async recursiveInput(fn, context) {

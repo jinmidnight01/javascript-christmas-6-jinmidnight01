@@ -10,7 +10,7 @@ class EventBenefit {
 
   constructor(dateString, orderString) {
     this.#date = Number(dateString);
-    this.#orders = this.parseOrders(orderString);
+    this.#orders = EventBenefit.parseOrders(orderString);
   }
 
   /**
@@ -34,7 +34,7 @@ class EventBenefit {
   static validateOrders(orderString) {
     Validations.isValidMenuFormat(orderString);
     Validations.hasDifferentOrder(orderString);
-    const orders = this.parseOrders(orderString);
+    const orders = EventBenefit.parseOrders(orderString);
     Validations.isOrderInMenu(orders);
     Validations.isOrderAmountPlus(orders);
     Validations.hasNotDrinkOnly(orders);
